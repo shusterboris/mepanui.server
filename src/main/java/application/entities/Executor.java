@@ -1,6 +1,7 @@
 package application.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -13,9 +14,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "executor")
 public class Executor extends BasicEntity implements Serializable {
-	private CatItem services; // many to many
+	private List<CatItem> services; // many to many
 	private String name;
 	private String phone;
-	private Integer raiting;
+	private Integer rating;
 	private Address address;
 }

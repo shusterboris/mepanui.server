@@ -15,6 +15,6 @@ import lombok.Setter;
 public class Customer extends BasicEntity implements Serializable {
 	private String name;
 	private String phone;
-	private Integer raiting;
+	private Integer rating;
 
 }

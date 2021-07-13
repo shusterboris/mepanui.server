@@ -13,6 +13,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "customer")
 public class Customer extends BasicEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6082577018428498519L;
 	private String name;
 	private String phone;
 	private Integer rating;

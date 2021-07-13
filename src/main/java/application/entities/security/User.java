@@ -54,6 +54,16 @@ public class User implements UserDetails, Serializable {
 	@JsonIgnore
 	private Collection<Authority> authorities;
 
+	private Long executor;
+
+	public Long getExecutor() {
+		return executor;
+	}
+
+	public void setExecutor(Long executor) {
+		this.executor = executor;
+	}
+
 	@Override
 	public Collection<Authority> getAuthorities() {
 		return authorities;

@@ -17,6 +17,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "notes")
 public class Notes extends BasicEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1062402038621524214L;
 	private Long orderId;
 	private Long executorId;
 	private String note;

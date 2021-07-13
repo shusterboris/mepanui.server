@@ -20,12 +20,19 @@ import lombok.Setter;
 @Table(name = "answer")
 
 public class Answer extends BasicEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5497054988942393050L;
+
 	@ManyToOne(fetch = FetchType.LAZY)
+
 	@JoinColumn(name = "order_id", nullable = false)
-	private Order order;
+	private Offer offer;
+
 	private Long customerId;
 	private Long executorId;
 	private String notes;
-	private Double price;
+	private Float price;
 	private AnswerState state;
 }

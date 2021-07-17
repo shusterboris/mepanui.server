@@ -9,5 +9,5 @@ import application.entities.CatItem;
 
 @Repository
 public interface CatItemDAO extends CrudRepository<CatItem, Long> {
-	public Set<CatItem> findByParentKey(Long parentKey);
+	public Set<CatItem> findByParentKeyOrderById(Long parentKey);
 }

@@ -1,14 +1,15 @@
 package application.proxies;
 
-public class Catproxy {
+public class CatProxy {
 	private Long id;
 	private String name;
+	private String addInfo;
 
 	public Long getId() {
 		return id;
 	}
 
-	public Catproxy(Long id) {
+	public CatProxy(Long id) {
 		this.id = id;
 	}
 
@@ -23,5 +24,15 @@ public class Catproxy {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
+	public String getAddInfo() {
+		return addInfo;
+	}
+
+	public void setAddInfo(String addInfo) {
+		this.addInfo = addInfo;
+	}
+
 
 }

@@ -1,7 +1,7 @@
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://10.100.102.65:3306/mipanui?useSSL=false&default_authentication_plugin=mysql_native_password&useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
+        url: jdbc:mysql://10.100.102.61:3306/mipanui?useSSL=false&default_authentication_plugin=mysql_native_password&useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
         username: me_server
         password: Pfgfye'vj_,hfnb!
     jpa:

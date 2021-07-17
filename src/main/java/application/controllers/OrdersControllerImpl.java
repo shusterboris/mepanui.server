@@ -22,8 +22,8 @@ import application.entities.CatItem;
 import application.entities.Customer;
 import application.entities.Executor;
 import application.entities.Offer;
-import application.proxies.Catproxy;
-import application.proxies.Orderproxy;
+import application.proxies.CatProxy;
+import application.proxies.OrderProxy;
 import application.services.repositories.CatItemDAO;
 import application.services.repositories.CustomerDAO;
 import application.services.repositories.ExecutorDAO;
@@ -54,7 +54,7 @@ public class OrdersControllerImpl implements OrdersController {
 		Gson gson = new GsonBuilder()
 				.registerTypeAdapter(LocalDate.class, new application.services.LocalDateJsonAdapter().nullSafe())
 				.create();
-		Orderproxy p = gson.fromJson(json, Orderproxy.class);
+		OrderProxy p = gson.fromJson(json, OrderProxy.class);
 		Offer o = proxyToOffer(p);
 			Offer res = offer.save(o);
 			return new ResponseEntity<Object>(res.getId(), HttpStatus.OK);
@@ -65,7 +65,7 @@ public class OrdersControllerImpl implements OrdersController {
 
 	}
 
-	private Offer proxyToOffer(Orderproxy o) {
+	private Offer proxyToOffer(OrderProxy o) {
 		Offer e = new Offer();
 		e.setId(o.getId());
 		e.setPlace(o.getAddress());
@@ -86,21 +86,19 @@ public class OrdersControllerImpl implements OrdersController {
 
 	@Override
 	public ResponseEntity<Object> getsCategories(String lang, Long parentKey) {
-		Set<Catproxy> resList = new HashSet<Catproxy>();
+		Set<CatProxy> resList = new HashSet<CatProxy>();
 		try {
-		Set<CatItem> res=cat.findByParentKey(parentKey);
-
-		for( CatItem r :res) {
-			Catproxy ncat = new Catproxy(r.getId());
-			resList.add(ncat);
-				if (lang.equalsIgnoreCase(lanHe)) {
-				ncat.setName(r.getValueRu());
-
-			} else {
-				ncat.setName(r.getValueHe());
+			Set<CatItem> res=cat.findByParentKeyOrderById(parentKey);
+			for( CatItem r :res) {
+				CatProxy ncat = new CatProxy(r.getId());
+				if (lang.equalsIgnoreCase(lanRu)) {
+					ncat.setName(r.getValueRu());
+				} else {
+					ncat.setName(r.getValueHe());
+				}
+				ncat.setAddInfo(r.getAddInfo());
+				resList.add(ncat);
 			}
-		}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Object>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -115,8 +113,8 @@ public class OrdersControllerImpl implements OrdersController {
 	 * @param executorId задан если выборка по исполнителю
 	 * @return
 	 */
-	private Orderproxy offerToProxy(Offer o, String lang, Long customerId, Long executorId) {
-		Orderproxy pr = new Orderproxy();
+	private OrderProxy offerToProxy(Offer o, String lang, Long customerId, Long executorId) {
+		OrderProxy pr = new OrderProxy();
 		pr.setId(o.getId());
 		pr.setAddress(o.getPlace());
 		pr.setCustomerId(o.getCustomerId());
@@ -154,7 +152,7 @@ public class OrdersControllerImpl implements OrdersController {
 
 	@Override
 	public ResponseEntity<Object> getOrdersbyCustomer(String language, Long userid, int pageNo, Integer pageSize,String isnew) {
-		List<Orderproxy> res=new ArrayList<Orderproxy>();
+		List<OrderProxy> res=new ArrayList<OrderProxy>();
 		try {
 			if (pageNo < 0)
 				pageNo = 0;
@@ -174,7 +172,7 @@ public class OrdersControllerImpl implements OrdersController {
 	@Override
 	public ResponseEntity<Object> getOrdersbyExecutor(String language, Long userid, int pageNo, Integer pageSize) {
 
-		List<Orderproxy> res = new ArrayList<Orderproxy>();
+		List<OrderProxy> res = new ArrayList<OrderProxy>();
 		try {
 			if (pageNo < 0)
 				pageNo = 0;

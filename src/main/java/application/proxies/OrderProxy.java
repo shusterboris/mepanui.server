@@ -11,7 +11,7 @@ import application.entities.OrderStatus;
 "notes": "С воском и хомером для уточек",
 "customer": "Вася",
 "address": "Хайфа, ул.Бен-Гурион, 63"*/
-public class Orderproxy {
+public class OrderProxy {
 	private LocalDateTime orderDateBegin;
 	private LocalDateTime orderDateEnd;
 	private Float price = (float) 0;
@@ -19,15 +19,6 @@ public class Orderproxy {
 	private OrderStatus status;
 	private String service;// CatItem
 	private Long serviceId;
-
-	public Long getServiceId() {
-		return serviceId;
-	}
-
-	public void setServiceId(Long serviceId) {
-		this.serviceId = serviceId;
-	}
-
 	private String addOptions;// from CatItem
 	private Long id;
 	private String address;
@@ -140,4 +131,11 @@ public class Orderproxy {
 		this.address = address;
 	}
 
+	public Long getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(Long serviceId) {
+		this.serviceId = serviceId;
+	}
 }
